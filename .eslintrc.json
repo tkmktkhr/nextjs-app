@@ -1,0 +1,27 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/no-require-imports": "error", // Disallows invocation of require()
+    "@typescript-eslint/no-unused-vars-experimental": "error", // Disallow unused variables and arguments
+    "quotes": "off", // Disable the base rule
+    "@typescript-eslint/quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      },
+      {
+        "avoidEscape": true
+      }
+    ], // Enforce the consistent use of either backticks, double, or single quotes
+    "@typescript-eslint/no-use-before-define": "error", // Disallow the use of variables before they are defined
+    "semi": "error"
+  }
+}
