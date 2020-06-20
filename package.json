@@ -13,6 +13,7 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.0",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
@@ -21,8 +22,10 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
+    "jest": "^26.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.7.3"
   },
   "license": "ISC"
