@@ -1,19 +1,59 @@
 {
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module", // Allows for the use of imports
+    "ecmaFeatures": {
+      "jsx": true // Allows for the parsing of JSX
+    }
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass", // Regex for Component Factory to use,
+      // default to "createReactClass"
+      "pragma": "React", // Pragma to use, default to "React"
+      "version": "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
+      "flowVersion": "0.53" // Flow version
+    },
+    "propWrapperFunctions": [
+      // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
+      "forbidExtraProps",
+      {
+        "property": "freeze",
+        "object": "Object"
+      },
+      {
+        "property": "myFavoriteWrapper"
+      }
+    ],
+    "linkComponents": [
+      // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
+      "Hyperlink",
+      {
+        "name": "Link",
+        "linkAttribute": "to"
+      }
+    ]
+  },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier" // eslint-plugin-prettier
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
+    "prettier/@typescript-eslint", // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    "prettier", // Must be written in the last?
+    "plugin:prettier/recommended" // Must be written in the last?　Enables eslint-plugin-prettier & Extends eslint-config-prettier. Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
   ],
   "rules": {
+    "no-console": 1,
     "@typescript-eslint/no-require-imports": "error", // Disallows invocation of require()
     "@typescript-eslint/no-unused-vars-experimental": "error", // Disallow unused variables and arguments
     "quotes": "off", // Disable the base rule
     "@typescript-eslint/quotes": [
       "error",
-      "single",
+      "double",
       {
         "allowTemplateLiterals": true
       },
@@ -21,7 +61,15 @@
         "avoidEscape": true
       }
     ], // Enforce the consistent use of either backticks, double, or single quotes
-    "@typescript-eslint/no-use-before-define": "error", // Disallow the use of variables before they are defined
-    "semi": "error"
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "prettier/prettier": "error" // eslint-plugin-prettier | Maybe already working thanks to extension "plugin:prettier/recommended"
   }
 }
