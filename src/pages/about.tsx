@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
+import { get } from '@/infrastructures/api';
+import { GetStaticPropsContext } from 'next';
 
 const AboutPage = () => (
   <Layout title="About | Next.js + TypeScript Example">
@@ -15,3 +17,12 @@ const AboutPage = () => (
 );
 
 export default AboutPage;
+
+export const getServerSideProps = async (_context: GetStaticPropsContext): Promise<any> => {
+  const res = await get('/ping', {});
+  console.log(res);
+
+  return {
+    props: { res }, // will be passed to the page component as props
+  };
+};

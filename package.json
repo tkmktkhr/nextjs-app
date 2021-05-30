@@ -9,6 +9,7 @@
     "eslint:ts": "eslint --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "next": "latest",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"

@@ -24,7 +24,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     // "sourceMap": true, // Dev ToolsのSourcesからtsファイル見れる。
-    "strict": true
+    "strict": true,
+    "declaration": true,
+    "declarationMap": false
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]
