@@ -6,15 +6,15 @@ const instance = axios.create({
   // headers: {'X-Custom-Header': 'foobar'}
 });
 
-export const get = (url: string, params: Object) => {
+export const get = async (url: string, params: any) => {
   console.log('inside of axios');
 
-  instance
-    .get(url, params)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  const result = await instance.get(url, params).then((res) => {
+    return res.data;
+  });
+
+  return result;
+  // .catch((e) => {
+  //   console.log(e);
+  // });
 };

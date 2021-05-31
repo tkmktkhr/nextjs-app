@@ -12,6 +12,7 @@
     "lib": ["dom", "es2017"], // コメントアウトした場合、targetに合わせて勝手に決定される。
     "module": "esnext",
     "moduleResolution": "node",
+    "noErrorTruncation": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true /* Report errors on unused locals. */,

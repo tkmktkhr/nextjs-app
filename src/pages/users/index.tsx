@@ -11,7 +11,7 @@ type Props = {
   items: User[];
 };
 
-const WithStaticProps = ({ items }: Props) => (
+const WithStaticProps = ({ items }: Props): JSX.Element => (
   <Layout title="Users List | Next.js + TypeScript Example">
     <h1>Users List</h1>
     <p>
