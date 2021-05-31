@@ -4,6 +4,7 @@ const instance = axios.create({
   baseURL: 'http://127.0.0.1:3030',
   timeout: 1000,
   // headers: {'X-Custom-Header': 'foobar'}
+  responseType: 'json',
 });
 
 export const get = async (url: string, params: any) => {

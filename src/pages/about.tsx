@@ -18,6 +18,8 @@ const AboutPage = ({ data }: any): JSX.Element => {
           {/* <a>Go home</a> */}
           <a>{data.a}</a>
         </Link>
+        <button onClick={getAccessTokenFromApi}>Getting a Redirect_Url for OAuth2.0</button>
+        <button onClick={getUserInfo}>Getting User Information</button>
       </p>
     </Layout>
     // </>
@@ -34,3 +36,17 @@ export const getServerSideProps = async (_context: GetStaticPropsContext): Promi
 };
 
 export default AboutPage;
+
+const getAccessTokenFromApi = async () => {
+  const data = await get('/ping', { test: 'test' });
+  console.log(data);
+  location.href = data.url;
+  return data;
+};
+
+const getUserInfo = async () => {
+  const data = await get('/userInfo', { test: 'test' });
+  console.log('userInfor');
+  console.log(data);
+  return data;
+};
