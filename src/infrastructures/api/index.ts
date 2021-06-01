@@ -9,8 +9,10 @@ const instance = axios.create({
 
 export const get = async (url: string, params: any) => {
   console.log('inside of axios');
+  console.log(params);
 
-  const result = await instance.get(url, params).then((res) => {
+  // postじゃないと{ data: params }入れれない
+  const result = await instance.get(url, { params }).then((res) => {
     return res.data;
   });
 
