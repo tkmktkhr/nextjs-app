@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
-import { get } from '@/infrastructures/api';
+import { get, post } from '@/infrastructures/api';
 import { GetServerSidePropsContext } from 'next';
 
 const AboutPage = ({ data }: any): JSX.Element => {
@@ -15,8 +15,7 @@ const AboutPage = ({ data }: any): JSX.Element => {
       <p>This is the about page</p>
       <p>
         <Link href="/">
-          {/* <a>Go home</a> */}
-          <a>{data.a}</a>
+          <a>Go home</a>
         </Link>
         <button onClick={getAccessTokenFromApi}>Getting a Redirect_Url for OAuth2.0</button>
         <button onClick={() => getUserInfo(data)}>Getting User Information</button>
@@ -27,15 +26,14 @@ const AboutPage = ({ data }: any): JSX.Element => {
 };
 
 export const getServerSideProps = async (context: GetServerSidePropsContext): Promise<any> => {
-  const params = { test: '---------------------------------------------------------' };
-  const data = await get('/ping', params);
+  const params = { post: '---------------------------------------------------------' };
+  const data = await post('/post', params);
   console.log(data);
-  const c = context.query;
   console.log('ABOUT PAGE query');
-  console.log(c);
+  const code = context.query ?? null;
 
   return {
-    props: { data: c.code }, // will be passed to the page component as props
+    props: { data: code }, // will be passed to the page component as props
   };
 };
 
