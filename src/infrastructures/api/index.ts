@@ -2,18 +2,19 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'http://127.0.0.1:3030',
-  timeout: 1000,
+  timeout: 5000,
   responseType: 'json',
 });
 
-export const get = async (url: string, params: any) => {
-  console.log('inside of axios');
-  console.log(params);
+type GetReqParams = {
+  [key: string]: string | number;
+};
 
-  // postじゃないと{ data: params }入れれない
+export const get = async (url: string, params: GetReqParams) => {
   const result = await instance.get(url, { params }).then((res) => {
     return res.data;
   });
+  console.log(result);
 
   return result;
   // .catch((e) => {
@@ -22,11 +23,8 @@ export const get = async (url: string, params: any) => {
 };
 
 export const post = async (url: string, params: any) => {
-  console.log('inside of axios');
-  console.log(params);
-
-  // postじゃないと{ data: params }入れれない
-  const result = await instance.post(url, { data: params }).then((res) => {
+  console.log('inside of axiosPost');
+  const result = await instance.post(url, { data: params.data }).then((res) => {
     return res.data;
   });
 

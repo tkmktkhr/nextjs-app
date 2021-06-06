@@ -5,15 +5,14 @@ import { GetServerSidePropsContext } from 'next';
 import { get } from '@/infrastructures/api';
 
 const IndexPage = ({ code }: any): JSX.Element => {
-  const c = { code };
-  console.log('Indexpage rendering....');
-  console.log(c.code);
+  console.log('Index page rendering....');
+  console.log(code);
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <h1>Hello Next.js 👋</h1>
       <p>
-        <Link href={{ pathname: '/about', query: { code: c.code } }}>
+        <Link href={{ pathname: '/about', query: { code } }}>
           <a>About</a>
         </Link>
       </p>
@@ -24,14 +23,12 @@ const IndexPage = ({ code }: any): JSX.Element => {
 export default IndexPage;
 
 export const getServerSideProps = async (context: GetServerSidePropsContext): Promise<any> => {
-  console.log(context.query);
   console.log(context.query.code);
 
-  const data = await get('/ping', { test: 'test' });
-  console.log(data);
+  await get('/ping', { test: 'get server side props in index page.' });
   const code = context.query.code ? context.query.code : null;
 
   return {
-    props: { code }, // will be passed to the page component as props
+    props: { code },
   };
 };
