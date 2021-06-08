@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 import { get, post } from '@/infrastructures/api';
@@ -7,27 +7,29 @@ import { GetServerSidePropsContext } from 'next';
 const AboutPage = ({ data }: any): JSX.Element => {
   console.log('rendering...ABOUT PAGE');
   console.log(data);
-  const [familyName, setFamilyName] = useState('Init');
-  const [givenName, setGivenName] = useState('Init');
-  // const [familyName, setFamilyName] = useState(null);
+  const [familyName, setFamilyName] = useState('familyName');
+  const [givenName, setGivenName] = useState('givenName');
 
-  const f = async () => {
+  const setAt = async () => {
     try {
-      const a = await getUserInfo(data.code);
-      setFamilyName(() => a.familyName);
-      setGivenName(() => a.givenName);
+      const res = await setAccessToken(data.code);
+      console.log(res);
+      return;
     } catch (error) {
       console.log(error);
     }
   };
-  // useEffect(() => {
-  //   const f = async () => {
-  //       const a = await getUserInfo(data.code);
-  //       setFamilyName(() => a.familyName);
-  //       setGivenName(() => a.givenName);
-  //     },
-  //     [boolean];
-  // });
+
+  const displayName = async () => {
+    try {
+      const a = await getUserInfo();
+      setFamilyName(() => a.familyName);
+      setGivenName(() => a.givenName);
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Layout title="About | Next.js + TypeScript Example">
@@ -37,8 +39,13 @@ const AboutPage = ({ data }: any): JSX.Element => {
         <Link href="/">
           <a>Go home</a>
         </Link>
-        <button onClick={authorizeOAuthGoogle}>Authorizing on Google OAuth2.0 </button>
-        <button onClick={() => f()}>Getting User Information</button>
+        <br />
+        <button onClick={authorizeOAuthGoogle}>1. Authorizing on Google OAuth2.0 </button>
+        <br />
+        <button onClick={() => setAt()}>2. Set Access Token</button>
+        <br />
+        <button onClick={() => displayName()}>3. Getting User Information</button>
+        <br />
         <a>
           {familyName} {givenName}
         </a>
@@ -61,9 +68,15 @@ export default AboutPage;
 
 const authorizeOAuthGoogle = async () => {
   const data = await get('/getAuthorizeUrl', { test: 'test' });
-  console.log(data);
+  console.log({ data });
   location.href = data.url;
   return data;
+};
+
+const setAccessToken = async (code: string) => {
+  const data = await post('/setAccessToken', { code });
+  console.log(data);
+  return;
 };
 
 type TPeopleInfo = {
@@ -71,10 +84,10 @@ type TPeopleInfo = {
   givenName: string;
 };
 
-const getUserInfo = async (code: string): Promise<TPeopleInfo> => {
-  console.log('getUserUnfo Function');
-  const data = await get('/userInfo', { code });
-  console.log('userInfor FROM API');
+const getUserInfo = async (): Promise<TPeopleInfo> => {
+  console.log('getUserInfo Function');
+  const data = await get('/userInfo');
+  console.log('userInfo FROM API');
   console.log(data.data);
   console.log(data.data.names);
   console.log(data.data.names[0]);

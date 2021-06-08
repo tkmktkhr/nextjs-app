@@ -10,7 +10,7 @@ type GetReqParams = {
   [key: string]: string | number;
 };
 
-export const get = async (url: string, params: GetReqParams) => {
+export const get = async (url: string, params?: GetReqParams) => {
   const result = await instance.get(url, { params }).then((res) => {
     return res.data;
   });
@@ -23,8 +23,10 @@ export const get = async (url: string, params: GetReqParams) => {
 };
 
 export const post = async (url: string, params: any) => {
-  console.log('inside of axiosPost');
-  const result = await instance.post(url, { data: params.data }).then((res) => {
+  console.log('------------------inside of axiosPost');
+  console.log(params);
+
+  const result = await instance.post(url, { data: params }).then((res) => {
     return res.data;
   });
 
