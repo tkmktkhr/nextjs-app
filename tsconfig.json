@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "target": "esnext",
-    "lib": ["dom", "es2017"], // コメントアウトした場合、targetに合わせて勝手に決定される。
+    "lib": ["dom", "esnext"], // コメントアウトした場合、targetに合わせて勝手に決定される。
     "module": "esnext",
     "moduleResolution": "node",
     "noErrorTruncation": true,
