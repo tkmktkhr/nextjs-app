@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
-import { get, post } from '@/infrastructures/api';
+import { APIClient } from '@/infrastructures/api';
 import { GetServerSidePropsContext } from 'next';
 
 const AboutPage = ({ data }: any): JSX.Element => {
@@ -56,7 +56,8 @@ const AboutPage = ({ data }: any): JSX.Element => {
 
 export const getServerSideProps = async (context: GetServerSidePropsContext): Promise<any> => {
   const params = { getServerSidePropsInAbout: '-------------------------------------' };
-  await post('/post', params);
+  const api = new APIClient();
+  await api.post('/post', params);
   // Context has query param when Authorization is completed.
   const code = context.query ?? null;
   return {
@@ -67,14 +68,16 @@ export const getServerSideProps = async (context: GetServerSidePropsContext): Pr
 export default AboutPage;
 
 const authorizeOAuthGoogle = async () => {
-  const data = await get('/getAuthorizeUrl', { test: 'test' });
+  const api = new APIClient();
+  const data = await api.get('/getAuthorizeUrl', { test: 'test' });
   console.log({ data });
   location.href = data.url;
   return data;
 };
 
 const setAccessToken = async (code: string) => {
-  const data = await post('/setAccessToken', { code });
+  const api = new APIClient();
+  const data = await api.post('/setAccessToken', { code });
   console.log(data);
   return;
 };
@@ -86,7 +89,8 @@ type TPeopleInfo = {
 
 const getUserInfo = async (): Promise<TPeopleInfo> => {
   console.log('getUserInfo Function');
-  const data = await get('/userInfo');
+  const api = new APIClient();
+  const data = await api.get('/userInfo');
   console.log('userInfo FROM API');
   console.log(data.data);
   console.log(data.data.names);

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 import { GetServerSidePropsContext } from 'next';
-import { get } from '@/infrastructures/api';
+import { APIClient } from '@/infrastructures/api';
 
 const IndexPage = ({ code }: any): JSX.Element => {
   console.log('Index page rendering....');
@@ -25,7 +25,9 @@ export default IndexPage;
 export const getServerSideProps = async (context: GetServerSidePropsContext): Promise<any> => {
   console.log(context.query.code);
 
-  await get('/ping', { test: 'get server side props in index page.' });
+  const api = new APIClient();
+  await api.get('/ping', { test: 'get server side props in index page.' });
+  // await get('/ping', { test: 'get server side props in index page.' });
   const code = context.query.code ? context.query.code : null;
 
   return {
