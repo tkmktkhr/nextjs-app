@@ -2,7 +2,8 @@
 
 `next dev`: development mode, `next start`: production mode.According to it, the server refers .env.<development or production>.
 
-> **Note** > `.env` is default value on all environment(development, production).
+> **Note**
+> `.env` is default value on all environment(development, production).
 
 When Deploying a server by `Dockerfile`, switch `npm run dev` or `npm run prod` by `ENVIRONMENT` value. (ex. Deploying a server on GAE, `ENVIRONMENT` should be set by `env_variables` in app.yaml)
 
@@ -33,7 +34,8 @@ When using `host.docker.internal` in development mode, set the bellow line in `/
 
 ## PRODUCTION
 
-> **Warning**> Regarding a port, it should be `EXPOSE 3000` in `Dockerfile` for Azure App Service, for Google App Engine, should be `EXPOSE 8080`.
+> **Warning**
+> Regarding a port, it should be `EXPOSE 3000` in `Dockerfile` for Azure App Service, for Google App Engine, should be `EXPOSE 8080`.
 > `npm run start`
 
 ## ENVIRONMENT
