@@ -1,0 +1,12 @@
+{
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.associations": {
+    ".env.development": "env",
+    ".env.production": "env"
+  }
+}

@@ -2,22 +2,31 @@
   "compilerOptions": {
     "allowJs": true,
     "alwaysStrict": true,
+    "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+    "baseUrl": "./src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": ["dom", "es2017"],
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"], // if here is commented out, it is decided automatically from "target".
     "module": "esnext",
     "moduleResolution": "node",
+    "noErrorTruncation": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "paths": { "*": ["node_modules/*"], "@/*": ["*"] },
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    // "sourceMap": true, // Refer ts files on Dev Tools -> Sources
     "strict": true,
-    "target": "esnext"
+    "declaration": true,
+    "declarationMap": false,
+    "incremental": true
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

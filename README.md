@@ -1,62 +1,46 @@
-# TypeScript Next.js example
+## Next.js Environment
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+`next dev`: development mode, `next start`: production mode.According to it, the server refers .env.<development or production>.
 
-## Deploy your own
+> **Note**
+> `.env` is default value on all environment(development, production).
 
-Deploy the example using [Vercel](https://vercel.com):
+When Deploying a server by `Dockerfile`, switch `npm run dev` or `npm run prod` by `ENVIRONMENT` value. (ex. Deploying a server on GAE, `ENVIRONMENT` should be set by `env_variables` in app.yaml)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
+### Docker Container
 
-## How to use it?
+Build image for dev mode
+`docker image build --no-cache --build-arg ENVIRONMENT=dev -t <name:tag> .`
+Start container
+`docker container run -p <local-port>:8080 <image:tag>`
 
-### Using `create-next-app`
+### Docker Compose
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+> **Note**
+> After updating the content in `Dockerfile`, remove the cache then execute build.
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
-```
+`docker-compose build --no-cache web`
 
-### Download manually
+`docker-compose up web`
 
-Download the example:
+Other, if you want to build a server then boot it up,
 
-```bash
-curl https://codeload.github.com/vercel/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-typescript
-cd with-typescript
-```
+`docker-compose up --build web`
 
-Install it and run:
+### Docker for Mac
 
-```bash
-npm install
-npm run dev
-# or
-yarn
-yarn dev
-```
+When using `host.docker.internal` in development mode, set the bellow line in `/etc/hosts`.
+`127.0.0.1 host.docker.internal`
 
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## PRODUCTION
 
-## Notes
+> **Warning**
+> Regarding a port, it should be `EXPOSE 3000` in `Dockerfile` for Azure App Service, for Google App Engine, should be `EXPOSE 8080`.
+> `npm run start`
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
+## ENVIRONMENT
 
-```
-npm install --save-dev typescript
-```
+To load `process.env` on a client side add `NEXT_PUBLIC_` on the prefix of valuables.
 
-To enable TypeScript's features, we install the type declarations for React and Node.
-
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+> **Note**
+> Deploying on GAE with Github Secrets, env will not be loaded on production mode, unless using `next.config.js`.
