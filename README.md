@@ -2,8 +2,9 @@
 
 `next dev`: development mode, `next start`: production mode.According to it, the server refers .env.<development or production>.
 
-> **Note**> `.env` is default value on all environment(development, production).
-> When Deploying a server by `Dockerfile`, switch `npm run dev` or `npm run prod` by `ENVIRONMENT` value. (ex. Deploying a server on GAE, `ENVIRONMENT` should be set by `env_variables` in app.yaml)
+> **Note** > `.env` is default value on all environment(development, production).
+
+When Deploying a server by `Dockerfile`, switch `npm run dev` or `npm run prod` by `ENVIRONMENT` value. (ex. Deploying a server on GAE, `ENVIRONMENT` should be set by `env_variables` in app.yaml)
 
 ### Docker Container
 
@@ -14,10 +15,16 @@ Start container
 
 ### Docker Compose
 
-> **Note**> After updating the content in `Dockerfile`, remove the cache then execute build.
-> `docker-compose build --no-cache web` > `docker-compose up web`
-> Other, if you want to build a server then boot it up,
-> `docker-compose up --build web`
+> **Note**
+> After updating the content in `Dockerfile`, remove the cache then execute build.
+
+`docker-compose build --no-cache web`
+
+`docker-compose up web`
+
+Other, if you want to build a server then boot it up,
+
+`docker-compose up --build web`
 
 ### Docker for Mac
 
@@ -33,4 +40,5 @@ When using `host.docker.internal` in development mode, set the bellow line in `/
 
 To load `process.env` on a client side add `NEXT_PUBLIC_` on the prefix of valuables.
 
-> **Note**> Deploying on GAE with Github Secrets, env will not be loaded on production mode, unless using `next.config.js`.
+> **Note**
+> Deploying on GAE with Github Secrets, env will not be loaded on production mode, unless using `next.config.js`.
