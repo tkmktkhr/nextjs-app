@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export class APIClient {
   axiosInstance: AxiosInstance;
@@ -11,7 +11,7 @@ export class APIClient {
     });
   }
 
-  get = async (url: string, params?: GetReqParams) => {
+  get = async (url: string, params?: ReqParams): Promise<AxiosResponse> => {
     console.log('get start web', new Date());
 
     const result = await this.axiosInstance.get(url, { params }).then((res) => {
@@ -24,7 +24,7 @@ export class APIClient {
     // });
   };
 
-  post = async (url: string, params: any) => {
+  post = async (url: string, params: ReqParams): Promise<AxiosResponse> => {
     console.log('post start web', new Date());
     const result = await this.axiosInstance.post(url, { data: params }).then((res) => {
       return res.data;
@@ -37,13 +37,7 @@ export class APIClient {
   };
 }
 
-// const instance = axios.create({
-//   baseURL: 'http://127.0.0.1:3001',
-//   timeout: 5000,
-//   responseType: 'json',
-// });
-
-type GetReqParams = {
+type ReqParams = {
   [key: string]: string | number;
 };
 
