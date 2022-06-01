@@ -1,5 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
+export type TErrorResponse = { err: Error; status: number; isError: true };
+
 export class APIClient {
   axiosInstance: AxiosInstance;
   constructor() {
