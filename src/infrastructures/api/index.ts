@@ -14,28 +14,27 @@ export class APIClient {
   }
 
   get = async (url: string, params?: ReqParams): Promise<AxiosResponse> => {
-    console.log('get start web', new Date());
-
-    const result = await this.axiosInstance.get(url, { params }).then((res) => {
-      return res.data;
-    });
-    console.log('get end web', new Date());
-    return result;
-    // .catch((e) => {
-    //   console.log(e);
-    // });
+    return await this.axiosInstance
+      .get(url, { params })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((e) => {
+        console.log(e);
+        throw new Error(e);
+      });
   };
 
   post = async (url: string, params: ReqParams): Promise<AxiosResponse> => {
-    console.log('post start web', new Date());
-    const result = await this.axiosInstance.post(url, { data: params }).then((res) => {
-      return res.data;
-    });
-    console.log('post end web', new Date());
-    return result;
-    // .catch((e) => {
-    //   console.log(e);
-    // });
+    return await this.axiosInstance
+      .get(url, { params })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((e) => {
+        console.log(e);
+        throw new Error(e);
+      });
   };
 }
 
