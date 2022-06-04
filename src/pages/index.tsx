@@ -27,7 +27,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext): Pr
 
   const api = new APIClient();
   await api.get('/ping', { test: 'get server side props in index page.' });
-  // await get('/ping', { test: 'get server side props in index page.' });
   const code = context.query.code ? context.query.code : null;
 
   return {
