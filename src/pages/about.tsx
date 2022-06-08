@@ -54,6 +54,8 @@ const AboutPage = ({ data }: any): JSX.Element => {
   );
 };
 
+export default AboutPage;
+
 export const getServerSideProps = async (context: GetServerSidePropsContext): Promise<any> => {
   const params = { getServerSidePropsInAbout: '-------------------------------------' };
   const api = new APIClient();
@@ -64,8 +66,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext): Pr
     props: { data: code },
   };
 };
-
-export default AboutPage;
 
 const authorizeOAuthGoogle = async () => {
   const api = new APIClient();
