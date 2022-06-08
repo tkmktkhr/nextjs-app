@@ -71,7 +71,7 @@ const authorizeOAuthGoogle = async () => {
   const api = new APIClient();
   const data = await api.get('/getAuthorizeUrl', { test: 'test' });
   console.log({ data });
-  location.href = data.url;
+  // location.href = data.url;
   return data;
 };
 

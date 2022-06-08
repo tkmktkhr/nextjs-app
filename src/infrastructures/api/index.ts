@@ -1,16 +1,23 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
 export type TErrorResponse = { err: Error; status: number; isError: true };
+
+const headers: AxiosRequestHeaders = {
+  'x-api-key': 'api key',
+};
+
+const config: AxiosRequestConfig = {
+  // baseURL: 'http://127.0.0.1:3001',
+  baseURL: 'http://host.docker.internal:3001',
+  timeout: 5000,
+  responseType: 'json',
+  headers,
+};
 
 export class APIClient {
   axiosInstance: AxiosInstance;
   constructor() {
-    this.axiosInstance = axios.create({
-      // baseURL: 'http://127.0.0.1:3001',
-      baseURL: 'http://host.docker.internal:3001',
-      timeout: 5000,
-      responseType: 'json',
-    });
+    this.axiosInstance = axios.create(config);
   }
 
   get = async (url: string, params?: ReqParams): Promise<AxiosResponse> => {
@@ -38,9 +45,11 @@ export class APIClient {
   };
 }
 
-type ReqParams = {
-  [key: string]: string | number;
-};
+// type ReqParams = {
+// [key: string]: string | number;
+// };
+
+type ReqParams = Record<string, string | number>;
 
 // export const get = async (url: string, params?: GetReqParams) => {
 //   console.log('get start web', new Date());
