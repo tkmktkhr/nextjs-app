@@ -6,7 +6,7 @@
     "baseUrl": "./src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "jsx": "preserve",
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"], // if here is commented out, it is decided automatically from "target".
