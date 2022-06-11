@@ -6,14 +6,16 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "eslint:ts": "eslint --ext .js,.jsx,.ts,.tsx"
+    "eslint:ts": "eslint --ext .js,.jsx,.ts,.tsx",
+    "test": "ts-node node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "axios": "^0.27.0",
     "dotenv": "^16.0.1",
-    "next": "latest",
+    "next": "^12.1.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "ts-node": "^10.8.1"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
