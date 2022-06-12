@@ -48,30 +48,4 @@ export class APIClient {
 // type ReqParams = {
 // [key: string]: string | number;
 // };
-
 type ReqParams = Record<string, string | number>;
-
-// export const get = async (url: string, params?: GetReqParams) => {
-//   console.log('get start web', new Date());
-
-//   const result = await instance.get(url, { params }).then((res) => {
-//     return res.data;
-//   });
-//   console.log('get end web', new Date());
-//   return result;
-//   // .catch((e) => {
-//   //   console.log(e);
-//   // });
-// };
-
-// export const post = async (url: string, params: any) => {
-//   console.log('post start web', new Date());
-//   const result = await instance.post(url, { data: params }).then((res) => {
-//     return res.data;
-//   });
-//   console.log('post end web', new Date());
-//   return result;
-//   // .catch((e) => {
-//   //   console.log(e);
-//   // });
-// };
