@@ -1,6 +1,6 @@
 {
   "name": "next-js-app",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next -p 8080",
     "build": "next build",
