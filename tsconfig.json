@@ -6,10 +6,14 @@
     "baseUrl": "./src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "preserve",
     "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"], // if here is commented out, it is decided automatically from "target".
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ], // if here is commented out, it is decided automatically from "target".
     "module": "esnext",
     "moduleResolution": "node",
     "noErrorTruncation": true,
@@ -18,7 +22,14 @@
     "noUnusedLocals": true /* Report errors on unused locals. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
-    "paths": { "*": ["node_modules/*"], "@/*": ["*"] },
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ],
+      "@/*": [
+        "*"
+      ]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     // "sourceMap": true, // Refer ts files on Dev Tools -> Sources
@@ -27,6 +38,12 @@
     "declarationMap": false,
     "incremental": true
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
