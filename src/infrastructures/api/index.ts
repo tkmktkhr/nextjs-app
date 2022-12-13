@@ -4,9 +4,9 @@ export type TErrorResponse = { err: Error; status: number; isError: true };
 
 // const apiKey = 'api-key';
 
-// const headersList = {
-//   'x-api-key': apiKey,
-// };
+const headers = {
+  'x-api-key': 'api-key',
+};
 
 // const headers = new AxiosHeaders(headersList);
 
@@ -15,9 +15,7 @@ const config: CreateAxiosDefaults = {
   baseURL: 'http://host.docker.internal:3001',
   timeout: 5000,
   responseType: 'json',
-  headers: {
-    'x-api-key': 'api-key',
-  },
+  headers,
 };
 
 export class APIClient {
