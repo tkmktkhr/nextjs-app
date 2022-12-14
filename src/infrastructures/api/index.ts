@@ -2,13 +2,9 @@ import axios, { AxiosInstance, AxiosResponse, CreateAxiosDefaults } from 'axios'
 
 export type TErrorResponse = { err: Error; status: number; isError: true };
 
-// const apiKey = 'api-key';
-
 const headers = {
   'x-api-key': 'api-key',
 };
-
-// const headers = new AxiosHeaders(headersList);
 
 const config: CreateAxiosDefaults = {
   // baseURL: 'http://127.0.0.1:3001',
