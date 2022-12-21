@@ -7,6 +7,10 @@
   },
   "files.associations": {
     ".env.development": "env",
-    ".env.production": "env"
+    ".env.development.local": "env",
+    ".env.production": "env",
+    ".env.production.local": "env",
+    ".env.test": "env",
+    ".env.test.local": "env",
   }
 }
