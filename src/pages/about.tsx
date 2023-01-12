@@ -94,7 +94,6 @@ const getUserInfo = async (): Promise<TPeopleInfo> => {
   console.log('userInfo FROM API');
   console.log(data.data);
   console.log(data.data.names);
-  console.log(data.data.names[0]);
   return {
     familyName: data.data.names[0].familyName,
     givenName: data.data.names[0].givenName,
