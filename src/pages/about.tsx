@@ -10,7 +10,7 @@ const AboutPage = ({ data }: any): JSX.Element => {
   const [familyName, setFamilyName] = useState('familyName');
   const [givenName, setGivenName] = useState('givenName');
 
-  const setAt = async () => {
+  const callSetAccessToken = async () => {
     try {
       const res = await setAccessToken(data.code);
       console.log(res);
@@ -42,7 +42,7 @@ const AboutPage = ({ data }: any): JSX.Element => {
         <br />
         <button onClick={authorizeOAuthGoogle}>1. Authorizing on Google OAuth2.0 </button>
         <br />
-        <button onClick={() => setAt()}>2. Set Access Token</button>
+        <button onClick={() => callSetAccessToken()}>2. Set Access Token</button>
         <br />
         <button onClick={() => displayName()}>3. Getting User Information</button>
         <br />
