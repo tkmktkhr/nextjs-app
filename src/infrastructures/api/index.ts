@@ -34,7 +34,7 @@ export class APIClient {
 
   post = async (url: string, params: ReqParams): Promise<AxiosResponse> => {
     return await this.axiosInstance
-      .get(url, { params })
+      .post(url, { data: params })
       .then((res) => {
         return res.data;
       })
