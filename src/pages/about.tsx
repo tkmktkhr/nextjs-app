@@ -5,8 +5,7 @@ import { APIClient } from '@/infrastructures/api';
 import { GetServerSidePropsContext } from 'next';
 
 const AboutPage = ({ data }: any): JSX.Element => {
-  console.log('rendering...ABOUT PAGE');
-  console.log(data);
+  console.log({ data });
   const [familyName, setFamilyName] = useState('familyName');
   const [givenName, setGivenName] = useState('givenName');
 
