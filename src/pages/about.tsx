@@ -21,9 +21,9 @@ const AboutPage = ({ data }: any): JSX.Element => {
 
   const displayName = async () => {
     try {
-      const a = await getUserInfo();
-      setFamilyName(() => a.familyName);
-      setGivenName(() => a.givenName);
+      const user = await getUserInfo();
+      setFamilyName(() => user.familyName);
+      setGivenName(() => user.givenName);
       return;
     } catch (error) {
       console.log(error);
