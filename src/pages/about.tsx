@@ -46,7 +46,7 @@ const AboutPage = ({ data }: any): JSX.Element => {
         <button onClick={() => displayName()}>3. Getting User Information</button>
         <br />
         <a>
-          {familyName} {givenName}
+          Name: {familyName} {givenName}
         </a>
       </p>
     </Layout>
