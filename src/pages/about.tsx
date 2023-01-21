@@ -81,12 +81,12 @@ const setAccessToken = async (code: string) => {
   return;
 };
 
-type TPeopleInfo = {
+type TPersonInfo = {
   familyName: string;
   givenName: string;
 };
 
-const getUserInfo = async (): Promise<TPeopleInfo> => {
+const getUserInfo = async (): Promise<TPersonInfo> => {
   console.log('getUserInfo Function');
   const api = new APIClient();
   const data = await api.get('/userInfo');
