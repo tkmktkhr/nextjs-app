@@ -89,7 +89,7 @@ type TPersonInfo = {
 const getUserInfo = async (): Promise<TPersonInfo> => {
   console.log('getUserInfo Function');
   const api = new APIClient();
-  const data = await api.get('/userInfo');
+  const data = await api.get('/users'); // /users/:id
   console.log('userInfo FROM API');
   console.log(data.data);
   console.log(data.data.names);
