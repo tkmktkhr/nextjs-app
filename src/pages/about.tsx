@@ -68,7 +68,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext): Pr
 
 const authorizeOAuthGoogle = async () => {
   const api = new APIClient();
-  const data = await api.get('/getAuthorizeUrl', { test: 'test' });
+  const data = await api.get('/getAuthorizeUrl', { test: 'test' }); // no need query params?
   console.log({ data });
   // location.href = data.url;
   return data;
