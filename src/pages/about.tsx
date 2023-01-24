@@ -7,7 +7,7 @@ import { GetServerSidePropsContext } from 'next';
 const AboutPage = ({ data }: any): JSX.Element => {
   console.log({ data });
   const [familyName, setFamilyName] = useState('familyName');
-  const [givenName, setGivenName] = useState('givenName');
+  const [first_name, setFirstName] = useState('first_name');
 
   const callSetAccessToken = async () => {
     try {
@@ -23,7 +23,7 @@ const AboutPage = ({ data }: any): JSX.Element => {
     try {
       const user = await getUserInfo();
       setFamilyName(() => user.familyName);
-      setGivenName(() => user.givenName);
+      setFirstName(() => user.first_name);
       return;
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ const AboutPage = ({ data }: any): JSX.Element => {
         <button onClick={() => displayName()}>3. Getting User Information</button>
         <br />
         <a>
-          Name: {familyName} {givenName}
+          Name: {familyName} {first_name}
         </a>
       </p>
     </Layout>
@@ -83,7 +83,7 @@ const setAccessToken = async (code: string) => {
 
 type TPersonInfo = {
   familyName: string;
-  givenName: string;
+  first_name: string;
 };
 
 const getUserInfo = async (): Promise<TPersonInfo> => {
@@ -95,6 +95,6 @@ const getUserInfo = async (): Promise<TPersonInfo> => {
   console.log(data.data.names);
   return {
     familyName: data.data.names[0].familyName,
-    givenName: data.data.names[0].givenName,
+    first_name: data.data.names[0].first_name,
   };
 };
