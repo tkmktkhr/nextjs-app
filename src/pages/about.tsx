@@ -5,7 +5,6 @@ import { APIClient } from '@/infrastructures/api';
 import { GetServerSidePropsContext } from 'next';
 
 const AboutPage = ({ data }: any): JSX.Element => {
-  console.log({ data });
   const [last_name, setLastName] = useState('last_name');
   const [first_name, setFirstName] = useState('first_name');
 
