@@ -3,14 +3,17 @@ import Link from 'next/link';
 import Layout from '@/components/Layout';
 import { APIClient } from '@/infrastructures/api';
 import { GetServerSidePropsContext } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 
-const AboutPage = ({ data }: any): JSX.Element => {
+// Actual, { data }: ParsedUrlQuery | null
+const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
   const [last_name, setLastName] = useState('last_name');
   const [first_name, setFirstName] = useState('first_name');
 
   const callSetAccessToken = async () => {
     try {
-      const res = await setAccessToken(data.code);
+      const code = data.code as string; // BUG null handing.
+      const res = await setAccessToken(code);
       console.log(res);
       return;
     } catch (error) {
@@ -59,7 +62,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext): Pr
   const api = new APIClient();
   await api.post('/post', params);
   // Context has query param when Authorization is completed.
-  const code = context.query ?? null;
+  const code = context.query ?? null; // Type check does not work because ParsedUrlQuery does not have null type.
   return {
     props: { data: code },
   };
