@@ -44,3 +44,11 @@ To load `process.env` on a client side add `NEXT_PUBLIC_` on the prefix of valua
 
 > **Note** 
 > Deploying on GAE with Github Secrets, env will not be loaded on production mode, unless using `next.config.js`.
+
+## husky
+
+Add a hook.
+
+```
+npm run prepare
+```
