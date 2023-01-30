@@ -12,7 +12,7 @@ const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
 
   const callSetAccessToken = async () => {
     try {
-      const code = data.code as string; // BUG null handing.
+      const code = data.code as string; // TODO null handing.
       const res = await setAccessToken(code);
       console.log(res);
       return;
