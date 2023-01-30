@@ -48,7 +48,7 @@ const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
         <button onClick={() => displayName()}>3. Getting User Information</button>
         <br />
         <a>
-          Name: {last_name} {first_name}
+          Your Name: {last_name} {first_name}
         </a>
       </p>
     </Layout>
