@@ -3,16 +3,17 @@ import Link from 'next/link';
 import Layout from '@/components/Layout';
 import { APIClient } from '@/infrastructures/api';
 import { GetServerSidePropsContext } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 
-const AboutPage = ({ data }: any): JSX.Element => {
-  console.log('rendering...ABOUT PAGE');
-  console.log(data);
-  const [familyName, setFamilyName] = useState('familyName');
-  const [givenName, setGivenName] = useState('givenName');
+// Actual, { data }: ParsedUrlQuery | null
+const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
+  const [last_name, setLastName] = useState('last_name');
+  const [first_name, setFirstName] = useState('first_name');
 
-  const setAt = async () => {
+  const callSetAccessToken = async () => {
     try {
-      const res = await setAccessToken(data.code);
+      const code = data.code as string; // TODO null handling.
+      const res = await setAccessToken(code);
       console.log(res);
       return;
     } catch (error) {
@@ -22,11 +23,12 @@ const AboutPage = ({ data }: any): JSX.Element => {
 
   const displayName = async () => {
     try {
-      const a = await getUserInfo();
-      setFamilyName(() => a.familyName);
-      setGivenName(() => a.givenName);
+      const user = await getUserInfo();
+      setLastName(() => user.last_name);
+      setFirstName(() => user.first_name);
       return;
     } catch (error) {
+      // display an error msg on a browser.
       console.log(error);
     }
   };
@@ -42,36 +44,36 @@ const AboutPage = ({ data }: any): JSX.Element => {
         <br />
         <button onClick={authorizeOAuthGoogle}>1. Authorizing on Google OAuth2.0 </button>
         <br />
-        <button onClick={() => setAt()}>2. Set Access Token</button>
+        <button onClick={() => callSetAccessToken()}>2. Set Access Token</button>
         <br />
         <button onClick={() => displayName()}>3. Getting User Information</button>
         <br />
         <a>
-          {familyName} {givenName}
+          Your Name: {last_name} {first_name}
         </a>
       </p>
     </Layout>
   );
 };
 
+export default AboutPage;
+
 export const getServerSideProps = async (context: GetServerSidePropsContext): Promise<any> => {
   const params = { getServerSidePropsInAbout: '-------------------------------------' };
   const api = new APIClient();
   await api.post('/post', params);
   // Context has query param when Authorization is completed.
-  const code = context.query ?? null;
+  const code = context.query ?? null; // Type check does not work because ParsedUrlQuery does not have null type.
   return {
     props: { data: code },
   };
 };
 
-export default AboutPage;
-
 const authorizeOAuthGoogle = async () => {
   const api = new APIClient();
-  const data = await api.get('/getAuthorizeUrl', { test: 'test' });
+  const data = await api.get('/getAuthorizeUrl', { test: 'test' }); // no need query params?
   console.log({ data });
-  location.href = data.url;
+  // location.href = data.url;
   return data;
 };
 
@@ -82,21 +84,20 @@ const setAccessToken = async (code: string) => {
   return;
 };
 
-type TPeopleInfo = {
-  familyName: string;
-  givenName: string;
+type TPersonInfo = {
+  last_name: string;
+  first_name: string;
 };
 
-const getUserInfo = async (): Promise<TPeopleInfo> => {
+const getUserInfo = async (): Promise<TPersonInfo> => {
   console.log('getUserInfo Function');
   const api = new APIClient();
-  const data = await api.get('/userInfo');
+  const data = await api.get('/users'); // /users/:id
   console.log('userInfo FROM API');
   console.log(data.data);
   console.log(data.data.names);
-  console.log(data.data.names[0]);
   return {
-    familyName: data.data.names[0].familyName,
-    givenName: data.data.names[0].givenName,
+    last_name: data.data.names[0].last_name,
+    first_name: data.data.names[0].first_name,
   };
 };

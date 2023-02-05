@@ -1,23 +1,30 @@
 {
   "name": "next-js-app",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next -p 8080",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "eslint:ts": "eslint --ext .js,.jsx,.ts,.tsx"
+    "eslint:ts": "eslint --ext .js,.jsx,.ts,.tsx",
+    "test": "ts-node node_modules/jest/bin/jest.js",
+    "husky": "npx lint-staged",
+    "prepare": "husky install"
   },
+  "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.4",
+    "axios": "^1.2.1",
     "dotenv": "^16.0.1",
-    "next": "latest",
+    "log4js": "^6.5.2",
+    "next": "^12.1.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "ts-node": "^10.8.1"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.0",
+    "@types/log4js": "^2.3.5",
     "@types/node": "^12.12.21",
     "@types/react": "^16.14.11",
     "@types/react-dom": "^16.9.4",
@@ -27,11 +34,19 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
+    "husky": "^8.0.3",
     "jest": "^26.6.3",
+    "lint-staged": "^13.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.0",
     "typescript": "^4.5.0"
   },
-  "license": "ISC"
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "bash -c tsc --noEmit"
+    ],
+    "*.{js,ts,jsx,tsx,md}": "prettier --write"
+  }
 }
