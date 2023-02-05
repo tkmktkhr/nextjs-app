@@ -28,6 +28,7 @@ const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
       setFirstName(() => user.first_name);
       return;
     } catch (error) {
+      // display an error msg on a browser.
       console.log(error);
     }
   };
