@@ -9,7 +9,7 @@ const IndexPage = ({ code }: any): JSX.Element => {
   console.log(code);
 
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
+    <Layout title="Home">
       <h1>Hello Next.js 👋</h1>
       <p>
         <Link href={{ pathname: '/about', query: { code } }}>
