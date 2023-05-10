@@ -7,8 +7,9 @@
     "start": "next start",
     "type-check": "tsc",
     "eslint:ts": "eslint --ext .js,.jsx,.ts,.tsx",
-    "test": "ts-node node_modules/jest/bin/jest.js",
+    "test:unit": "ts-node node_modules/jest/bin/jest.js",
     "test:e2e": "playwright test",
+    "test": "npm run test:unit && npm run test:e2e",
     "husky": "npx lint-staged",
     "prepare": "husky install"
   },
