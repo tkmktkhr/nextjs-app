@@ -1,3 +1,5 @@
+import { sampleUserData } from './sample-data';
+
 jest.setTimeout(30000);
 
 describe('array test', () => {
@@ -7,6 +9,7 @@ describe('array test', () => {
       { name: 'name2', expectedName: 'name2' },
     ])('parseNumber() : %p', ({ name, expectedName }) => {
       expect(name).toEqual(expectedName);
+      console.log(sampleUserData);
     });
   });
 });
