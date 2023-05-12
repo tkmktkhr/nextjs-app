@@ -29,14 +29,22 @@ interface ButtonProps {
  */
 export const Button = ({ primary = false, size = 'medium', backgroundColor, label, ...props }: ButtonProps) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const style: React.CSSProperties = {
+    backgroundColor: backgroundColor,
+  };
   return (
-    <button type="button" className={['storybook-button', `storybook-button--${size}`, mode].join(' ')} {...props}>
+    <button
+      type="button"
+      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      {...props}
+      style={style}
+    >
       {label}
-      <style jsx>{`
+      {/* <style jsx>{`
         button {
           background-color: ${backgroundColor};
         }
-      `}</style>
+      `}</style> */}
     </button>
   );
 };
