@@ -6,7 +6,7 @@ type Props = {
   items: User[];
 };
 
-const List = ({ items }: Props): JSX.Element => (
+const List = ({ items }: Props): React.JSX.Element => (
   <ul>
     {items.map((item) => (
       <li key={item.id}>
