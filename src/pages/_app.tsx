@@ -3,8 +3,9 @@ import { AppProps /*, AppContext */ } from 'next/app';
 import Router from 'next/router';
 import { UnauthorizedError } from '@/middlewares/error';
 import { TErrorResponse } from '@/infrastructures/api';
+import { logger } from '@/middlewares/logger';
 
-const App = ({ Component, pageProps }: AppProps): JSX.Element => {
+const App = ({ Component, pageProps }: AppProps): React.JSX.Element => {
   return (
     <>
       {' '}
@@ -27,7 +28,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
 
 // Error Handing
 export const goToErrorPage = (e: TErrorResponse | Error | UnauthorizedError): void => {
-  console.log(e);
+  logger.debug(e);
   if (e instanceof UnauthorizedError) {
     Router.push('401');
   } else if (e instanceof Error) {

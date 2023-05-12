@@ -11,7 +11,7 @@ type Props = {
   errors?: string;
 };
 
-const StaticPropsDetail = ({ item, errors }: Props): JSX.Element => {
+const StaticPropsDetail = ({ item, errors }: Props): React.JSX.Element => {
   if (errors) {
     return (
       <Layout title="Error | Next.js + TypeScript Example">
