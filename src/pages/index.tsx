@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
 import Layout from '@/components/Layout';
 import { GetServerSidePropsContext } from 'next';
 import { logger } from '@/middlewares/logger';
+import CustomLink from '@/components/CustomLink';
 // import { APIClient } from '@/infrastructures/api';
 
 const IndexPage = ({ code }: any): React.JSX.Element => {
@@ -17,10 +17,8 @@ const IndexPage = ({ code }: any): React.JSX.Element => {
 
   return (
     <Layout title="Home">
-      <h1 className="text-3xl font-bold underline">Hello Next.js 👋</h1>
-      <p>
-        <Link href={{ pathname: '/about', query: { code } }}>About</Link>
-      </p>
+      <h1 className="my-h1">Hello Next.js 👋</h1>
+      <CustomLink href={{ pathname: '/about', query: { code } }}>Go to About</CustomLink>
     </Layout>
   );
 };
