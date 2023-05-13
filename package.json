@@ -17,6 +17,8 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@fontsource/noto-sans-jp": "^4.5.12",
+    "@mui/material": "^5.13.0",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
     "log4js": "^6.9.1",
@@ -42,6 +44,7 @@
     "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
+    "autoprefixer": "^10.4.14",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jest": "^27.2.1",
@@ -54,8 +57,10 @@
     "lint-staged": "^13.2.2",
     "npm-run-all": "^4.1.5",
     "playwright": "^1.33.0",
+    "postcss": "^8.4.23",
     "prettier": "^2.8.8",
     "storybook": "^7.0.10",
+    "tailwindcss": "^3.3.2",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
   },
