@@ -18,7 +18,6 @@
   "license": "ISC",
   "dependencies": {
     "@fontsource/noto-sans-jp": "^4.5.12",
-    "@mui/material": "^5.13.0",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
     "log4js": "^6.9.1",
