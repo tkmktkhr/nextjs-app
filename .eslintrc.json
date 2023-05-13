@@ -1,5 +1,11 @@
 {
   "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest/globals": true
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
@@ -7,19 +13,19 @@
       "jsx": true
     }
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint",
+    "jest"
+  ],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
+    "plugin:storybook/recommended"
   ],
   "rules": {
     "no-console": 1,
     "@typescript-eslint/no-require-imports": "error",
-    "@typescript-eslint/no-unused-vars-experimental": "error",
     "quotes": "off",
     "@typescript-eslint/quotes": [
       "error",
@@ -28,7 +34,17 @@
         "avoidEscape": true
       }
     ],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
     "prettier/prettier": "error"
   },
   "settings": {

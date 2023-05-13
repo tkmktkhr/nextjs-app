@@ -11,7 +11,7 @@ type Props = {
   items: User[];
 };
 
-const WithStaticProps = ({ items }: Props): JSX.Element => (
+const WithStaticProps = ({ items }: Props): React.JSX.Element => (
   <Layout title="Users List | Next.js + TypeScript Example">
     <h1>Users List</h1>
     <p>
@@ -20,9 +20,7 @@ const WithStaticProps = ({ items }: Props): JSX.Element => (
     <p>You are currently on: /users</p>
     <List items={items} />
     <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
+      <Link href="/">Go home</Link>
     </p>
   </Layout>
 );

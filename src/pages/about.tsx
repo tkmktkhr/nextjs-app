@@ -4,9 +4,10 @@ import Layout from '@/components/Layout';
 import { APIClient } from '@/infrastructures/api';
 import { GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { logger } from '@/middlewares/logger';
 
 // Actual, { data }: ParsedUrlQuery | null
-const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
+const AboutPage = ({ data }: { data: ParsedUrlQuery }): React.JSX.Element => {
   const [last_name, setLastName] = useState('last_name');
   const [first_name, setFirstName] = useState('first_name');
 
@@ -14,10 +15,10 @@ const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
     try {
       const code = data.code as string; // TODO null handling.
       const res = await setAccessToken(code);
-      console.log(res);
+      logger.debug(res);
       return;
     } catch (error) {
-      console.log(error);
+      logger.debug(error);
     }
   };
 
@@ -29,7 +30,7 @@ const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
       return;
     } catch (error) {
       // display an error msg on a browser.
-      console.log(error);
+      logger.debug(error);
     }
   };
 
@@ -38,9 +39,7 @@ const AboutPage = ({ data }: { data: ParsedUrlQuery }): JSX.Element => {
       <h1>About</h1>
       <p>This is the about page</p>
       <p>
-        <Link href="/">
-          <a>Go home</a>
-        </Link>
+        <Link href="/">Go home</Link>
         <br />
         <button onClick={authorizeOAuthGoogle}>1. Authorizing on Google OAuth2.0 </button>
         <br />
@@ -72,7 +71,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext): Pr
 const authorizeOAuthGoogle = async () => {
   const api = new APIClient();
   const data = await api.get('/getAuthorizeUrl', { test: 'test' }); // no need query params?
-  console.log({ data });
+  logger.debug({ data });
   // location.href = data.url;
   return data;
 };
@@ -80,7 +79,7 @@ const authorizeOAuthGoogle = async () => {
 const setAccessToken = async (code: string) => {
   const api = new APIClient();
   const data = await api.post('/setAccessToken', { code });
-  console.log(data);
+  logger.debug(data);
   return;
 };
 
@@ -90,12 +89,12 @@ type TPersonInfo = {
 };
 
 const getUserInfo = async (): Promise<TPersonInfo> => {
-  console.log('getUserInfo Function');
+  logger.debug('getUserInfo Function');
   const api = new APIClient();
   const data = await api.get('/users'); // /users/:id
-  console.log('userInfo FROM API');
-  console.log(data.data);
-  console.log(data.data.names);
+  logger.debug('userInfo FROM API');
+  logger.debug(data.data);
+  logger.debug(data.data.names);
   return {
     last_name: data.data.names[0].last_name,
     first_name: data.data.names[0].first_name,
