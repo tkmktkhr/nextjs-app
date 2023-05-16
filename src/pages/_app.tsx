@@ -5,6 +5,9 @@ import { UnauthorizedError } from '@/middlewares/error';
 import { TErrorResponse } from '@/infrastructures/api';
 import { logger } from '@/middlewares/logger';
 
+import '@/global.scss';
+import '@fontsource/noto-sans-jp';
+
 const App = ({ Component, pageProps }: AppProps): React.JSX.Element => {
   return (
     <>
