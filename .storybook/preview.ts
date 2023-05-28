@@ -10,6 +10,8 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    // dismiss an accessibility rule or modify its settings
+    // https://storybook.js.org/docs/react/writing-tests/accessibility-testing#global-a11y-configuration
   },
 };
 
