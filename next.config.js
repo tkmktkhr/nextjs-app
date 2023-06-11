@@ -2,7 +2,7 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  output: 'export',
+  output: 'export', // for static server.
   env: {},
   // Will only be available on the server side
   serverRuntimeConfig: {},
