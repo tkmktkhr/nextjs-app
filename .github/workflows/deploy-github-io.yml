@@ -30,6 +30,8 @@ jobs:
         cache: "npm"
 
     - name: build
+      env:
+        NEXT_PUBLIC_LOG_LEVEL: ${{ vars.NEXT_PUBLIC_LOG_LEVEL }}
       run: |
         npm i
         npm run build
