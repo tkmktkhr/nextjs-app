@@ -17,6 +17,9 @@ jobs:
         node-version: [18.x]
         os: [ubuntu-latest]
 
+    environment:
+      name: github-pages
+
     steps:
     - uses: actions/checkout@v3
 
